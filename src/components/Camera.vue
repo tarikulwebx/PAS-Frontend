@@ -174,7 +174,7 @@ export default {
 						// console.log("ocr request send and response time ="+"start: "+start+" end: "+end+" res time: " + time);
 
 						console.log(
-							"\nSend to Backend and Response time => " +
+							"Send to Backend and Response time => " +
 								"Start: " +
 								this.start +
 								", End: " +
@@ -241,8 +241,8 @@ export default {
 					} else {
 						this.delayTime = 3000;
 						this.count = 0;
-						let successResCome = new Date().getTime();
-						let SuccessResTime = successResCome - this.getOcrStart;
+						// let successResCome = new Date().getTime();
+						// let SuccessResTime = successResCome - this.getOcrStart;
 						// console.log("successResCome : " + successResCome +" ,SuccessResTime : " + SuccessResTime)
 						// console.log(response.data.status);
 
@@ -290,10 +290,10 @@ export default {
 								", End: " +
 								getOcrAllEnd +
 								", Res Time: " +
-								ocrAllResTime +
-								"\nTotal Res Time =>  " +
-								TotalRes +
-								"\n\n\n"
+								ocrAllResTime
+						);
+						console.log(
+							"\nTotal Res Time =>  " + TotalRes + "\n\n\n"
 						);
 					}
 				})
