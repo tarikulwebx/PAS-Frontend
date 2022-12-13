@@ -278,23 +278,24 @@ export default {
 								"is-danger"
 							);
 						}
-					}
-					let getOcrAllEnd = new Date().getTime();
-					let ocrAllResTime = getOcrAllEnd - this.getOcrStart;
 
-					let TotalRes = this.frontImgRes + ocrAllResTime;
-					// console.log("getOcrStart " + this.getOcrStart + " ,getOcrAllEnd : " + getOcrAllEnd + " , ocrAllResTime : " + ocrAllResTime + " ,TotalRes: " + TotalRes);
-					console.log(
-						"OCR Process => Start " +
-							this.getOcrStart +
-							", End: " +
-							getOcrAllEnd +
-							", Res Time: " +
-							ocrAllResTime +
-							"\nTotal Res Time =>  " +
-							TotalRes +
-							"\n\n\n"
-					);
+						let getOcrAllEnd = new Date().getTime();
+						let ocrAllResTime = getOcrAllEnd - this.getOcrStart;
+
+						let TotalRes = this.frontImgRes + ocrAllResTime;
+						// console.log("getOcrStart " + this.getOcrStart + " ,getOcrAllEnd : " + getOcrAllEnd + " , ocrAllResTime : " + ocrAllResTime + " ,TotalRes: " + TotalRes);
+						console.log(
+							"OCR Process => Start " +
+								this.getOcrStart +
+								", End: " +
+								getOcrAllEnd +
+								", Res Time: " +
+								ocrAllResTime +
+								"\nTotal Res Time =>  " +
+								TotalRes +
+								"\n\n\n"
+						);
+					}
 				})
 				.catch((error) => {
 					this.isLoading = false;
