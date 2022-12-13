@@ -155,7 +155,7 @@ export default {
 			formData.append("awsInstance", "t2 samll");
 			formData.append("image", this.photo);
 
-			let start = new Date().getTime();
+			this.start = new Date().getTime();
 
 			// this function request to the backend api and backend keep this request
 			// in the queue and response with a id. after getting this id we will request again.
@@ -170,6 +170,8 @@ export default {
 						let time = end - this.start;
 						let frontRes = end - this.start;
 						this.frontImgRes = frontRes;
+						// console.log("frontStart: " + this.start + " ,frontRes: " + frontRes);
+						// console.log("ocr request send and response time ="+"start: "+start+" end: "+end+" res time: " + time);
 
 						console.log(
 							"\nSend to Backend and Response time => " +
@@ -209,15 +211,8 @@ export default {
 					// let ResStart = new Date().getTime();
 					// let diffRes = ResStart - this.checkRes;
 					// this.checkRes = ResStart;
-					// console.log(
-					// 	"ResStart : " + ResStart + " diffRes: " + diffRes
-					// );
-					// console.log(
-					// 	"res er: ",
-					// 	this.delayTime,
-					// 	"count: ",
-					// 	this.count
-					// );
+					// console.log("ResStart : " + ResStart + " diffRes: " + diffRes);
+					// console.log("res er: ", this.delayTime, "count: ", this.count);
 
 					if (response.data.status !== 1) {
 						let self = this;
@@ -228,13 +223,19 @@ export default {
 								: this.count > 1 && this.delayTime > 20
 								? (this.delayTime = this.delayTime - 5)
 								: (this.delayTime = 20);
-
-							// console.log(
-							// 	"setTimeOut er : ",
-							// 	this.delayTime,
-							// 	"count: ",
-							// 	this.count
-							// );
+							// if (this.count == 1) {
+							//   this.delayTime = 100;
+							// }
+							// else if (this.count > 1) {
+							//   this.delayTime = this.delayTime - 40;
+							//   if (this.delayTime < 20) {
+							//     this.delayTime = 50;
+							//   }
+							// }
+							// else {
+							//   this.delayTime = 3000;
+							// }
+							// console.log("setTimeOut er : ", this.delayTime, "count: ", this.count);
 							self.getOCRResult(id);
 						}, this.delayTime); // It will make requests every 100 milliseconds until the status reaches 1
 					} else {
@@ -242,13 +243,9 @@ export default {
 						this.count = 0;
 						let successResCome = new Date().getTime();
 						let SuccessResTime = successResCome - this.getOcrStart;
-						// console.log(
-						// 	"successResCome : " +
-						// 		successResCome +
-						// 		" ,SuccessResTime : " +
-						// 		SuccessResTime
-						// );
-						console.log(response.data.status);
+						// console.log("successResCome : " + successResCome +" ,SuccessResTime : " + SuccessResTime)
+						// console.log(response.data.status);
+
 						this.isLoading = false;
 						if (response.data.ocr_data !== null) {
 							//showToastMessage(response.message, "is-success");
@@ -286,17 +283,7 @@ export default {
 					let ocrAllResTime = getOcrAllEnd - this.getOcrStart;
 
 					let TotalRes = this.frontImgRes + ocrAllResTime;
-					// console.log(
-					// 	"getOcrStart " +
-					// 		this.getOcrStart +
-					// 		" ,getOcrAllEnd : " +
-					// 		getOcrAllEnd +
-					// 		" , ocrAllResTime : " +
-					// 		ocrAllResTime +
-					// 		" ,TotalRes: " +
-					// 		TotalRes
-					// );
-
+					// console.log("getOcrStart " + this.getOcrStart + " ,getOcrAllEnd : " + getOcrAllEnd + " , ocrAllResTime : " + ocrAllResTime + " ,TotalRes: " + TotalRes);
 					console.log(
 						"OCR Process => Start " +
 							this.getOcrStart +
@@ -305,7 +292,8 @@ export default {
 							", Res Time: " +
 							ocrAllResTime +
 							"\nTotal Res Time =>  " +
-							TotalRes
+							TotalRes +
+							"\n\n\n"
 					);
 				})
 				.catch((error) => {
