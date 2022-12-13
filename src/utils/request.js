@@ -8,7 +8,7 @@ const service = axios.create({
     // withCredentials: true, // send cookies when cross-domain requests
     //timeout: 50000, // request timeout
     //baseURL: "http://127.0.0.1:8000/api/v1"
-    baseURL: "https://3.238.204.119/postal-api/api/v1"
+    baseURL: "https://34.239.173.129/postal-api/api/v1"
 })
 
 // request interceptor
